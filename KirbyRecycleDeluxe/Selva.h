@@ -1,12 +1,12 @@
 #pragma once
-#include "Base.h"
+#include "Nivel.h"
 #include "Pirana.h" 
 #include "Anaconda.h"
 #include "Fruta.h"
 #include <vector>
 using namespace std;
 class Selva :
-    public Base
+    public Nivel 
 {
 private:
     vector<Base*> arrPir;

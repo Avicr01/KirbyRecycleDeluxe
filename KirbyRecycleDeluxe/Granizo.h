@@ -4,4 +4,3 @@ class Granizo :
     public Base
 {
 };
-

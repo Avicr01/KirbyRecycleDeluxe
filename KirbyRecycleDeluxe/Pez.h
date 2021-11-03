@@ -4,4 +4,3 @@ class Pez :
     public Base
 {
 };
-
