@@ -81,6 +81,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,6 +113,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Anaconda.h" />
+    <ClInclude Include="Arana.h" />
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="Basura.h" />
+    <ClInclude Include="Condor.h" />
+    <ClInclude Include="Costa.h" />
+    <ClInclude Include="Cushuro.h" />
+    <ClInclude Include="Fruta.h" />
+    <ClInclude Include="Granizo.h" />
+    <ClInclude Include="Juego.h" />
+    <ClInclude Include="Kirby.h" />
+    <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Nivel.h" />
+    <ClInclude Include="Pez.h" />
+    <ClInclude Include="Pirana.h" />
+    <ClInclude Include="Pulpo.h" />
+    <ClInclude Include="Selva.h" />
+    <ClInclude Include="Sierra.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Anaconda.cpp" />
+    <ClCompile Include="Arana.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="Basura.cpp" />
+    <ClCompile Include="Condor.cpp" />
+    <ClCompile Include="Costa.cpp" />
+    <ClCompile Include="Cushuro.cpp" />
+    <ClCompile Include="Fruta.cpp" />
+    <ClCompile Include="Granizo.cpp" />
+    <ClCompile Include="Juego.cpp" />
+    <ClCompile Include="Kirby.cpp" />
+    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Nivel.cpp" />
+    <ClCompile Include="Pez.cpp" />
+    <ClCompile Include="Pirana.cpp" />
+    <ClCompile Include="Pulpo.cpp" />
+    <ClCompile Include="Selva.cpp" />
+    <ClCompile Include="Sierra.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
