@@ -2,6 +2,7 @@
 #include "Nivel.h"
 #include "Pirana.h" 
 #include "Anaconda.h"
+#include "Arana.h"
 #include "Fruta.h"
 #include <vector>
 using namespace std;

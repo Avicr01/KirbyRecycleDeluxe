@@ -67,7 +67,8 @@ void Base::Desplazar(dir n) {
 	// Tener cuidado a que fila pertenece que
 	// Cambiar fila si es que es para otra cosa
 
-	// Modificar
+	// Cuando Kirby nada
+	/*
 	if (direc == dir::up) {
 		dy = -(h / fracMovY);
 		fil = 3;
@@ -83,6 +84,26 @@ void Base::Desplazar(dir n) {
 	if (direc == dir::right) {
 		dx = (w / fracMovX);
 		fil = 2;
+	}
+	*/
+
+	if (direc == dir::up) {
+		dy = -(h / fracMovY);
+		fil = 3;
+	}
+	if (direc == dir::down) {
+		dy = (2 * h / fracMovY);
+		fil = 1;
+	}
+	if (direc == dir::left) {
+		dx = -(w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 1;
+	}
+	if (direc == dir::right) {
+		dx = (w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 0;
 	}
 }
 void Base::Mover(Graphics^ g) {
