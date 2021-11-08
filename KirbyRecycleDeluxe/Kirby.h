@@ -5,6 +5,7 @@ class Kirby :
 {
 private:
     int vidas;
+	dir hor_dir;
 public:
     Kirby();
     Kirby(int _x, int _y, int _w, int _h);

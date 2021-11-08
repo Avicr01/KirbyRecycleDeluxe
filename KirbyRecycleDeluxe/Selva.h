@@ -17,4 +17,9 @@ private:
 public:
     Selva();
     ~Selva();
+    bool Colision_Enemigos();
+    bool Colision_PowerUp();
+    void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp);
+    void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^ bmpPir);
+    void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
 };

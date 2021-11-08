@@ -6,7 +6,7 @@ using namespace std;
 
 class Nivel
 {
-private:
+protected:
 	bool esFin;
 	bool esGanador;
 	int contador;
@@ -18,17 +18,18 @@ private:
 public:
 	Nivel();
 	~Nivel();
-	void Dezplazar(dir mover);
+	void Desplazar(dir mover);
 	// El virtual de Kirby puede que cambie
+	bool Colision_Basura();
 	virtual bool Colision_Enemigos();
 	virtual bool Colision_PowerUp();
-	bool Colision_Basura();
 	virtual void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp);
 	virtual void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmp);
 	virtual void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
 	void Dibujar_Basura(Graphics^ g, Bitmap^ bmp);
 	bool getFin();
-	bool getTiempo();
+	int getTiempo();
 	int getVidas();
+	int getContador();
 	void Resumen(Graphics^ g);
 };
