@@ -2,13 +2,13 @@
 Selva::Selva() : Nivel() {
 	int tmp = rand() % 4 + 1;
 	for (int i = 0; i < tmp; i++)
-		arrPir.push_back(new Pirana(rand() % 500 + 80, rand() % 200 + 20, 200, 200));
+		arrPir.push_back(new Pirana(rand() % 1400, rand() % 10 + 740, 200, 200));
 	tmp = rand() % 4 + 1;
 	for (int i = 0; i < tmp; i++)
-		arrAna.push_back(new Anaconda(rand() % 500 + 80, rand() % 200 + 20, 200, 200));
+		arrAna.push_back(new Anaconda(rand() % 1400, rand() % 200 + 20, 200, 200));
 	tmp = rand() % 4 + 1;
 	for (int i = 0; i < tmp; i++)
-		arrAr.push_back(new Arana(rand() % 500 + 80, rand() % 200 + 20, 200, 200));
+		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
 	for (int i = 0; i < 3; i++)
 		arrFr.push_back(new Fruta(rand() % 1400, rand() % 300 + 20, 200, 200));
 }
@@ -91,7 +91,7 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 	// Kirby Volando
 	objK->Dibujar_Imagen(g, bmp);
 	Colision_Basura();
-	//Colision_Enemigos();
+	Colision_Enemigos();
 	Colision_PowerUp();
 
 	// Previa direccion
@@ -113,24 +113,34 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 void Selva::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^ bmpPir) {
 	// Anaconda 
 	for (int i = 0; i < arrAna.size(); i++) {
-		arrAna.at(i)->Dibujar_Imagen(g, bmpAna);
-
+		if (arrAna.at(i)->getdY() + arrAna.at(i)->getY() > 700)
+			arrAna.at(i)->setEliminar(true);
 		if (arrAna.at(i)->getEliminar())
 			arrAna.erase(arrAna.begin() + i);
 	}
+	for (int i = 0; i < arrAna.size(); i++) {
+		arrAna.at(i)->Dibujar_Imagen(g, bmpAna);
+		arrAna.at(i)->Mover(g);
+	}
 	// Arana 
 	for (int i = 0; i < arrAr.size(); i++) {
-		arrAr.at(i)->Dibujar_Imagen(g, bmpAr);
-
+		if (arrAr.at(i)->getdY() + arrAr.at(i)->getY() > 700)
+			arrAr.at(i)->setEliminar(true);
 		if (arrAr.at(i)->getEliminar())
 			arrAr.erase(arrAr.begin() + i);
 	}
+	for (int i = 0; i < arrAr.size(); i++) {
+		arrAr.at(i)->Dibujar_Imagen(g, bmpAr);
+		arrAr.at(i)->Mover(g);
+	}
 	// Pirana 
 	for (int i = 0; i < arrPir.size(); i++) {
+		if (arrPir.at(i)->getX() + arrPir.at(i)->getdX() < 0)
+			arrPir.at(i)->setFil(1);
+		if (arrPir.at(i)->getX() + arrPir.at(i)->getdX() > 1530 - arrPir.at(i)->getW())
+			arrPir.at(i)->setFil(0);
 		arrPir.at(i)->Dibujar_Imagen(g, bmpPir);
-
-		if (arrPir.at(i)->getEliminar())
-			arrPir.erase(arrPir.begin() + i);
+		arrPir.at(i)->Mover(g);
 	}
 		
 }

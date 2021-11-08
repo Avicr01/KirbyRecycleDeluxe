@@ -108,11 +108,9 @@ void Base::Desplazar(dir n) {
 }
 void Base::Mover(Graphics^ g) {
 	if (y + dy < 1 || y + dy + h > g->VisibleClipBounds.Height)
-		//dy = dy * -1;
-		dy = 0;
+		dy = dy * -1;
 	if (x + dx < 1 || x + dx + w > g->VisibleClipBounds.Width)
-		//dx = dx * -1;
-		dx = 0;
+		dx = dx * -1;
 
 	y += dy;
 	x += dx;

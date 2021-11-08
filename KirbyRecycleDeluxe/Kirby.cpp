@@ -14,3 +14,12 @@ Kirby::Kirby(int _x, int _y, int _w, int _h)
 Kirby::~Kirby() { }
 int Kirby::getVidas() { return vidas; }
 void Kirby::setVidas() { vidas -= 1; }
+void Kirby::Mover(Graphics^ g) {
+	if (y + dy < 1 || y + dy + h > g->VisibleClipBounds.Height)
+		dy = 0;
+	if (x + dx < 1 || x + dx + w > g->VisibleClipBounds.Width)
+		dx = 0;
+
+	y += dy;
+	x += dx;
+}
