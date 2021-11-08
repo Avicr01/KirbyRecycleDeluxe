@@ -11,6 +11,8 @@ Selva::Selva() : Nivel() {
 		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
 	for (int i = 0; i < 3; i++)
 		arrFr.push_back(new Fruta(rand() % 1400, rand() % 300 + 20, 200, 200));
+	time_enemigos = time(0);
+	time_rapidez = time(0);
 }
 Selva::~Selva() {
 	for (int i = 0; i < arrPir.size(); i++)
@@ -151,5 +153,13 @@ void Selva::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 
 		if (arrFr.at(i)->getEliminar())
 			arrFr.erase(arrFr.begin() + i);
+	}
+}
+void Selva::Insertar_Enemigos() {
+	// No funciona?
+	if (difftime(time(0), time_enemigos) > 5) {
+		arrAna.push_back(new Anaconda(rand() % 1400, rand() % 200 + 20, 200, 200));
+		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
+		time_enemigos = time(0);
 	}
 }

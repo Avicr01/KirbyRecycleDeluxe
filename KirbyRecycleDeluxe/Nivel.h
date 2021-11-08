@@ -12,7 +12,7 @@ protected:
 	int contador;
 	bool rapidez;
 	time_t time_init_app;
-	time_t time_rapidez;
+	time_t time_basura;
 	Kirby* objK;
 	vector<Base*> arrB;
 public:
@@ -26,6 +26,8 @@ public:
 	virtual void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp);
 	virtual void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmp);
 	virtual void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
+	void Insertar_Basura();
+	virtual void Insertar_Enemigos();
 	void Dibujar_Basura(Graphics^ g, Bitmap^ bmp);
 	bool getFin();
 	int getTiempo();

@@ -11,6 +11,7 @@ public:
     Kirby(int _x, int _y, int _w, int _h);
     void Mover(Graphics^ g);
     ~Kirby();
+    void Volar(dir n);
     int getVidas();
     void setVidas();
 };

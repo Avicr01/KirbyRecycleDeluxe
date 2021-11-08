@@ -9,7 +9,7 @@ Nivel::Nivel() {
 	for (int i = 0; i < 8; i++)
 		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
 	time_init_app = time(0);
-	time_rapidez = time(0);
+	time_basura = time(0);
 }
 Nivel::~Nivel() {
 	delete objK;
@@ -17,7 +17,8 @@ Nivel::~Nivel() {
 		delete arrB.at(i);
 }
 void Nivel::Desplazar(dir mover) {
-	objK->Desplazar(mover);
+	// Esta con volar
+	objK->Volar(mover);
 }
 bool Nivel::getFin() {
 	return esFin;
@@ -76,3 +77,10 @@ bool Nivel::Colision_PowerUp() {
 void Nivel::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) { }
 void Nivel::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmp) { }
 void Nivel::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) { }
+void Nivel::Insertar_Basura() {
+	if (difftime(time(0), time_basura) > 5) {
+		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
+		time_basura = time(0);
+	}
+}
+void Nivel::Insertar_Enemigos() { }

@@ -191,14 +191,16 @@ namespace KirbyRecycleDeluxe {
 		objJuego->Dibujar_Basura(bf->Graphics, bmpBasura);
 		objJuego->Dibujar_PowerUp(bf->Graphics, bmpFruta);
 		objJuego->Dibujar_Enemigos(bf->Graphics, bmpAnaconda, bmpArana, bmpPirana);
+		objJuego->Insertar_Basura();
+		objJuego->Insertar_Enemigos();
 
 		bf->Render(g);
 		delete bf, espacio, g;
 
-	/*	if (objJuego->getFin()) {
+		if (objJuego->getFin()) {
 			objJuego->Resumen(g);
 			timer1->Stop();
-		}*/
+		}
 	}
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}

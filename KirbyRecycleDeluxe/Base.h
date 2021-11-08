@@ -29,6 +29,7 @@ public:
 	int getFracMovY();
 	int getFracMovX();
 	bool getEliminar();
+	// Solo va a servir para Nadar
 	void Desplazar(dir n);
 	void setX(int n);
 	void setY(int n);

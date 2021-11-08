@@ -14,6 +14,8 @@ private:
     vector<Base*> arrAna;
     vector<Base*> arrAr;
     vector<Base*> arrFr;
+	time_t time_rapidez;
+	time_t time_enemigos;
 public:
     Selva();
     ~Selva();
@@ -22,4 +24,5 @@ public:
     void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp);
     void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^ bmpPir);
     void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
+    void Insertar_Enemigos();
 };
