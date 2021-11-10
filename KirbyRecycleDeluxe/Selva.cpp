@@ -11,8 +11,6 @@ Selva::Selva() : Nivel() {
 		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
 	for (int i = 0; i < 3; i++)
 		arrFr.push_back(new Fruta(rand() % 1400, rand() % 300 + 20, 200, 200));
-	time_enemigos = time(0);
-	time_rapidez = time(0);
 }
 Selva::~Selva() {
 	for (int i = 0; i < arrPir.size(); i++)
@@ -96,7 +94,7 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 	Colision_Enemigos();
 	Colision_PowerUp();
 
-	// Previa direccion
+	// Rapidez evaluada
 	if (rapidez) {
 		if (difftime(time(0), time_rapidez) > 5)
 			rapidez = false;
@@ -109,7 +107,6 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 		esFin = true;
 	if (contador == 30) {
 		esFin = true;
-		// Hacer que pase el otro nivel
 	}
 }
 void Selva::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^ bmpPir) {
@@ -156,7 +153,6 @@ void Selva::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 	}
 }
 void Selva::Insertar_Enemigos() {
-	// No funciona?
 	if (difftime(time(0), time_enemigos) > 5) {
 		arrAna.push_back(new Anaconda(rand() % 1400, rand() % 200 + 20, 200, 200));
 		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));

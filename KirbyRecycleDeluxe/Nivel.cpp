@@ -3,13 +3,17 @@ Nivel::Nivel() {
 	esGanador = false;
 	esFin = false;
 	rapidez = false;
+	pausa = false;
 	contador = 0;
 	objK = new Kirby(20, 20, 50, 50);
 	// La cantidad de Basura puede cambiar despues 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 10; i++)
 		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
 	time_init_app = time(0);
-	time_basura = time(0);
+	time_rapidez = time(0);
+	time_pausa = time(0);
+	time_enemigos = time(0);
+	time_powerup = time(0);
 }
 Nivel::~Nivel() {
 	delete objK;
@@ -22,6 +26,9 @@ void Nivel::Desplazar(dir mover) {
 }
 bool Nivel::getFin() {
 	return esFin;
+}
+bool Nivel::getGanador() {
+	return esGanador;
 }
 int Nivel::getTiempo() {
 	return int(difftime(time(0), time_init_app));
@@ -74,13 +81,12 @@ bool Nivel::Colision_Enemigos() {
 bool Nivel::Colision_PowerUp() {
 	return false;
 }
-void Nivel::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) { }
-void Nivel::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmp) { }
+void Nivel::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {  }
 void Nivel::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) { }
 void Nivel::Insertar_Basura() {
-	if (difftime(time(0), time_basura) > 5) {
+	if (difftime(time(0), time_rapidez) > 5) {
 		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
-		time_basura = time(0);
+		time_rapidez = time(0);
 	}
 }
 void Nivel::Insertar_Enemigos() { }

@@ -3,6 +3,7 @@
 Base::Base() {
 	dx = dy = 0;
 	direc = dir::none;
+	hor_direc = dir::right;
 	eliminar = false;
 }
 Base::Base(int _x, int _y, int _w, int _h) {
@@ -61,7 +62,7 @@ Rectangle Base::getRectangle() {
 }
 // Modifique desplazar para que es realice 
 // dependiendo que que fila es la animacion
-void Base::Desplazar(dir n) {
+void Base::Nadar(dir n) {
 	direc = n;
 	dx = dy = 0;
 	// Tener cuidado a que fila pertenece que
@@ -106,6 +107,41 @@ void Base::Desplazar(dir n) {
 		fil = 0;
 	}
 }
+void Base::Volar(dir n) {
+	if (direc == dir::left)
+		hor_direc = direc;
+	if (direc == dir::right)
+		hor_direc = direc;
+	direc = n;
+	dx = dy = 0;
+	// Tener cuidado a que fila pertenece que
+	// Cambiar fila si es que es para otra cosa
+	if (direc == dir::up) {
+		if(hor_direc == dir::left)
+			fil = 3;
+		else
+			fil = 2;
+		dy = -(h / fracMovY);
+	}
+	if (direc == dir::down) {
+		if (hor_direc == dir::left)
+			fil = 1;
+		else
+			fil = 0;
+		dy = (2 * h / fracMovY);
+	}
+	if (direc == dir::left) {
+		dx = -(w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 1;
+	}
+	if (direc == dir::right) {
+		dx = (w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 0;
+	}
+}
+
 void Base::Mover(Graphics^ g) {
 	if (y + dy < 1 || y + dy + h > g->VisibleClipBounds.Height)
 		dy = dy * -1;
@@ -138,4 +174,6 @@ void Base::Dibujar_Imagen(Graphics^ g, Bitmap^ bmp) {
 	if (col == max_col)
 		col = 0;
 }
-int Base::getColor() { return color; }
+int Base::getColor() { 
+	return color;
+}

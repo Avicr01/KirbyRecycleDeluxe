@@ -13,5 +13,15 @@ private:
     vector<Base*> arrGr;
     vector<Base*> arrCsh;
 public:
+    Sierra();
+    ~Sierra();
+    bool Colision_Enemigos();
+    bool Colision_PowerUp();
+    void Insertar_Enemigos();
+    void Insertar_PowerUp(Graphics^ g, Bitmap^ bmp);
+    void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong);
+    void Dibujar_Congelado(Graphics^ g, Bitmap^ bmp);
+    void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpGr, Bitmap^ bmpC);
+    void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
 };
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Selva.h"
+#include "Juego.h"
 
 namespace KirbyRecycleDeluxe {
 
@@ -24,7 +24,6 @@ namespace KirbyRecycleDeluxe {
 			//
 			// Archivos de los sprites
 			// Deberia ser juego
-			objJuego = new Selva();
 			bmpAnaconda = gcnew Bitmap("sprites\\snake.png");
 			bmpArana = gcnew Bitmap("sprites\\spider.png");
 			bmpBasura = gcnew Bitmap("sprites\\trash.png");
@@ -42,6 +41,8 @@ namespace KirbyRecycleDeluxe {
 			bmpCosta = gcnew Bitmap("sprites\\underwater.png");
 			bmpSierra =  gcnew Bitmap("sprites\\sierra.png");
 			bmpSelva = gcnew Bitmap("sprites\\selva.png");
+
+			objJuego = new Juego();
 		}
 
 	protected:
@@ -69,7 +70,7 @@ namespace KirbyRecycleDeluxe {
 		/// </summary>
 		// Inicializar variables
 		// Aca deberia ser Juego, no selva
-		Selva* objJuego;
+		Juego* objJuego;
 		Bitmap^ bmpAnaconda;
 		Bitmap^ bmpArana;
 		Bitmap^ bmpBasura;
@@ -181,26 +182,45 @@ namespace KirbyRecycleDeluxe {
 		Graphics^ g = CreateGraphics();
 		BufferedGraphicsContext^ espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = espacio->Allocate(g, ClientRectangle);
-		//bf->Graphics->Clear(Color::Black);
-		// Dibujar fondo (ahora es el de selva)
-		bf->Graphics->DrawImage(bmpSelva, ClientRectangle,
-			Rectangle(0, 0, bmpSelva->Width, bmpSelva->Height), GraphicsUnit::Pixel);
 
-		// Todo esta con lo de selva
-		objJuego->Dibujar_Kirby(bf->Graphics, bmpKirbyVuela);
-		objJuego->Dibujar_Basura(bf->Graphics, bmpBasura);
-		objJuego->Dibujar_PowerUp(bf->Graphics, bmpFruta);
-		objJuego->Dibujar_Enemigos(bf->Graphics, bmpAnaconda, bmpArana, bmpPirana);
-		objJuego->Insertar_Basura();
-		objJuego->Insertar_Enemigos();
+		// Variable que obtenga en que nivel esta ahora el juego
+		int nivel = objJuego->getNivel();
+
+		// Fondos
+		if (nivel == 1)
+			bf->Graphics->DrawImage(bmpCosta, ClientRectangle,
+				Rectangle(0, 0, bmpCosta->Width, bmpCosta->Height), GraphicsUnit::Pixel);
+		if (nivel == 2)
+			bf->Graphics->DrawImage(bmpSierra, ClientRectangle,
+				Rectangle(0, 0, bmpSierra->Width, bmpSierra->Height), GraphicsUnit::Pixel);
+		if (nivel == 3)
+			bf->Graphics->DrawImage(bmpSelva, ClientRectangle,
+				Rectangle(0, 0, bmpSelva->Width, bmpSelva->Height), GraphicsUnit::Pixel);
+
+		// el Forms evalua en que nivel esta el juego
+		if (!objJuego->getFin()) {
+			if (nivel == 1)
+				objJuego->Jugar_Costa();
+			if (nivel == 2)
+				objJuego->Jugar_Sierra();
+			if (nivel == 3)
+				objJuego->Jugar_Selva(bf->Graphics, bmpFruta, bmpAnaconda, bmpArana, bmpPirana,
+					bmpKirbyVuela, bmpKirbyNada, bmpBasura);
+		}
+		else {
+			if (objJuego->getGanador()) {
+				if (nivel == 1 || nivel == 2)
+					objJuego->setNivel();
+				if (nivel == 3)
+					objJuego->Resumen(bf->Graphics);
+			}
+			else {
+				objJuego->Resumen(bf->Graphics);
+			}
+		}
 
 		bf->Render(g);
 		delete bf, espacio, g;
-
-		if (objJuego->getFin()) {
-			objJuego->Resumen(g);
-			timer1->Stop();
-		}
 	}
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}

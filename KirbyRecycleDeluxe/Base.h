@@ -9,6 +9,7 @@ protected:
 	bool eliminar;
 	int max_fil, max_col, fil, col; // Sprites
 	dir direc;
+	dir hor_direc;
 	int fracMovY, fracMovX;
 	int color;
 public:
@@ -29,8 +30,6 @@ public:
 	int getFracMovY();
 	int getFracMovX();
 	bool getEliminar();
-	// Solo va a servir para Nadar
-	void Desplazar(dir n);
 	void setX(int n);
 	void setY(int n);
 	void setdX(int n);
@@ -50,4 +49,8 @@ public:
 	void Borrar(Graphics^ g);
 	void Dibujar_Imagen(Graphics^ g, Bitmap^ bmp);
 	int getColor();
+	// Desplazar - Kirby nada
+	void Nadar(dir n);
+	// Desplazar - Kirby vuela
+	void Volar(dir n);
 };

@@ -14,40 +14,6 @@ Kirby::Kirby(int _x, int _y, int _w, int _h)
 Kirby::~Kirby() { }
 int Kirby::getVidas() { return vidas; }
 void Kirby::setVidas() { vidas -= 1; }
-void Kirby::Volar(dir n) {
-	if (direc == dir::left)
-		hor_dir = direc;
-	if (direc == dir::right)
-		hor_dir = direc;
-	direc = n;
-	dx = dy = 0;
-	// Tener cuidado a que fila pertenece que
-	// Cambiar fila si es que es para otra cosa
-	if (direc == dir::up) {
-		if(hor_dir == dir::left)
-			fil = 3;
-		else
-			fil = 2;
-		dy = -(h / fracMovY);
-	}
-	if (direc == dir::down) {
-		if (hor_dir == dir::left)
-			fil = 1;
-		else
-			fil = 0;
-		dy = (2 * h / fracMovY);
-	}
-	if (direc == dir::left) {
-		dx = -(w / fracMovX);
-		dy = (h / fracMovY);
-		fil = 1;
-	}
-	if (direc == dir::right) {
-		dx = (w / fracMovX);
-		dy = (h / fracMovY);
-		fil = 0;
-	}
-}
 void Kirby::Mover(Graphics^ g) {
 	if (y + dy < 1 || y + dy + h > g->VisibleClipBounds.Height)
 		dy = 0;
@@ -56,4 +22,13 @@ void Kirby::Mover(Graphics^ g) {
 
 	y += dy;
 	x += dx;
+}
+void Kirby::Dibujar_Congelado(Graphics^ g, Bitmap^ bmp) {
+	// Imagen animada
+	w = bmp->Width / 1;
+	h = bmp->Height / 3;
+	Rectangle porcion = Rectangle(0 * w, 1 * h, w, h);
+	Rectangle zoom = Rectangle(x, y, w * 1.2, h * 1.2);
+
+	g->DrawImage(bmp, x, y, porcion, GraphicsUnit::Pixel);
 }

@@ -14,8 +14,6 @@ private:
     vector<Base*> arrAna;
     vector<Base*> arrAr;
     vector<Base*> arrFr;
-	time_t time_rapidez;
-	time_t time_enemigos;
 public:
     Selva();
     ~Selva();
