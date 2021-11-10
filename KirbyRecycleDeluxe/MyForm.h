@@ -202,10 +202,11 @@ namespace KirbyRecycleDeluxe {
 			if (nivel == 1)
 				objJuego->Jugar_Costa();
 			if (nivel == 2)
-				objJuego->Jugar_Sierra();
+				objJuego->Jugar_Sierra(bf->Graphics, bmpCushuro, bmpGranizo, 
+					bmpCondor, bmpKirbyVuela, bmpKirbyHielo, bmpBasura);
 			if (nivel == 3)
-				objJuego->Jugar_Selva(bf->Graphics, bmpFruta, bmpAnaconda, bmpArana, bmpPirana,
-					bmpKirbyVuela, bmpKirbyNada, bmpBasura);
+				objJuego->Jugar_Selva(bf->Graphics, bmpFruta, bmpAnaconda, bmpArana, 
+					bmpPirana, bmpKirbyVuela, bmpBasura);
 		}
 		else {
 			if (objJuego->getGanador()) {

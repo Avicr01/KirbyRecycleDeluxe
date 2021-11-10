@@ -42,8 +42,6 @@ bool Sierra::Colision_PowerUp() {
 		Rectangle rch = arrCsh.at(i)->getRectangle();
 		if (r1.IntersectsWith(rch)) {
 			resultado = true;
-			time_rapidez = time(0);
-			rapidez = true;
 			arrCsh.at(i)->setEliminar(true);
 			// Empieza la velocidad
 			time_rapidez = time(0);
@@ -83,22 +81,21 @@ void Sierra::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong) {
 		objK->setFracMovX(4);
 		objK->setFracMovY(4);
 	}
-	objK->Mover(g);
+	// Si esta congelado 
+	if (pausa)
+		Dibujar_Congelado(g, bmpCong);
+	else 
+		objK->Mover(g);
 
 	if (objK->getVidas() == 0)
 		esFin = true;
 	if (contador == 30) {
 		esFin = true;
-		// Hacer que pase el otro nivel
+		esGanador = true;
 		Resumen(g);
 	}
-
-	// Si esta congelado 
-	if (pausa)
-		Dibujar_Congelado(g, bmpCong);
 }
 void Sierra::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpGr, Bitmap^ bmpC) {
-
 	objC->Dibujar_Imagen(g, bmpC);
 	objC->Mover(g);
 
@@ -116,7 +113,13 @@ void Sierra::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 		arrCsh.at(i)->Dibujar(g, bmp);
 		arrCsh.at(i)->Mover(g);
 	}
+	for (int i = 0; i < arrCsh.size(); i++) {
+		if (arrCsh.at(i)->getEliminar())
+			arrCsh.erase(arrCsh.begin() + i);
+	}
 }
 void Sierra::Dibujar_Congelado(Graphics^ g, Bitmap^ congelado) {
 	objK->Dibujar_Congelado(g, congelado);
+	if (difftime(time(0), time_pausa) > 5)
+		pausa = false;
 }

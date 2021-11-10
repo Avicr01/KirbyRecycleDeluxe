@@ -107,6 +107,7 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 		esFin = true;
 	if (contador == 30) {
 		esFin = true;
+		esGanador = true;
 	}
 }
 void Selva::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^ bmpPir) {
