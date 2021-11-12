@@ -78,11 +78,13 @@ void Sierra::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong) {
 
 	// Rapidez evaluada
 	if (rapidez) {
-		if (difftime(time(0), time_rapidez) > 5)
+		if (difftime(time(0), time_rapidez) > 5) {
 			rapidez = false;
-		objK->setFracMovX(4);
-		objK->setFracMovY(4);
+			objK->setFracMovX(4);
+			objK->setFracMovY(4);
+		}
 	}
+
 	// Si esta congelado 
 	if (pausa)
 		Dibujar_Congelado(g, bmpCong);

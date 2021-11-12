@@ -78,11 +78,13 @@ void Selva::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 
 	// Rapidez evaluada
 	if (rapidez) {
-		if (difftime(time(0), time_rapidez) > 5)
+		if (difftime(time(0), time_rapidez) > 5) {
 			rapidez = false;
 			objK->setFracMovX(4);
 			objK->setFracMovY(4);
+		}
 	}
+
 	objK->Mover(g);
 
 	if (objK->getVidas() == 0)
