@@ -1,6 +1,6 @@
 #include "Sierra.h"
 Sierra::Sierra() {
-	objC = new Condor(1000, 500, 1, 1);
+	objC = new Condor(1000, 300, 1, 1);
 }
 Sierra::~Sierra() {
 	for (int i = 0; i < arrGr.size(); i++)
@@ -17,8 +17,10 @@ bool Sierra::Colision_Enemigos() {
 	if (r1.IntersectsWith(r2)) {
 		resultado = true;
 		objK->setVidas();
-		objK->setX(5);
-		objK->setY(5);
+		objK->setX(20);
+		objK->setY(20);
+		if (pausa)
+			pausa = false;
 	}
 	// Granizo
 	for (int i = 0; !resultado && i < arrGr.size(); i++) {
@@ -69,7 +71,6 @@ void Sierra::Insertar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 }
 void Sierra::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong) {
 	// Kirby Volando
-	objK->Dibujar_Imagen(g, bmp);
 	Colision_Basura();
 	Colision_Enemigos();
 	Colision_PowerUp();
@@ -84,8 +85,10 @@ void Sierra::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong) {
 	// Si esta congelado 
 	if (pausa)
 		Dibujar_Congelado(g, bmpCong);
-	else 
+	else {
+		objK->Dibujar_Imagen(g, bmp);
 		objK->Mover(g);
+	}
 
 	if (objK->getVidas() == 0)
 		esFin = true;

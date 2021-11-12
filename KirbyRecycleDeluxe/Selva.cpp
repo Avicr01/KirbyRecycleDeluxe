@@ -1,26 +1,9 @@
 #include "Selva.h"
 Selva::Selva() : Nivel() {
-	int tmp = rand() % 4 + 1;
-	for (int i = 0; i < tmp; i++)
-		arrPir.push_back(new Pirana(rand() % 1400, rand() % 10 + 740, 200, 200));
-	tmp = rand() % 4 + 1;
-	for (int i = 0; i < tmp; i++)
-		arrAna.push_back(new Anaconda(rand() % 1400, rand() % 200 + 20, 200, 200));
-	tmp = rand() % 4 + 1;
-	for (int i = 0; i < tmp; i++)
-		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
-	for (int i = 0; i < 3; i++)
-		arrFr.push_back(new Fruta(rand() % 1400, rand() % 300 + 20, 200, 200));
+	objP = new Pirana(rand() % 1400, rand() % 10 + 740, 200, 200);
 }
 Selva::~Selva() {
-	for (int i = 0; i < arrPir.size(); i++)
-		delete arrPir.at(i);
-	for (int i = 0; i < arrAna.size(); i++)
-		delete arrAna.at(i);
-	for (int i = 0; i < arrAr.size(); i++)
-		delete arrAr.at(i);
-	for (int i = 0; i < arrFr.size(); i++)
-		delete arrFr.at(i);
+	delete objP;
 }
 bool Selva::Colision_Enemigos() {
 	bool resultado = false;
@@ -53,17 +36,15 @@ bool Selva::Colision_Enemigos() {
 		}
 	}
 	// Pirana
-	for (int i = 0; !resultado && i < arrPir.size(); i++) {
-		Rectangle r2 = arrPir.at(i)->getRectangle();
+	Rectangle r2 = objP->getRectangle();
 
-		if (r1.IntersectsWith(r2)) {
-			resultado = true;
-			// Menos vidas de Kirby
-			objK->setVidas();
-			// Kirby vuelve a la esquina superior izquierda
-			objK->setX(20);
-			objK->setY(20);
-		}
+	if (r1.IntersectsWith(r2)) {
+		resultado = true;
+		// Menos vidas de Kirby
+		objK->setVidas();
+		// Kirby vuelve a la esquina superior izquierda
+		objK->setX(20);
+		objK->setY(20);
 	}
 	return resultado;
 }
@@ -134,14 +115,12 @@ void Selva::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^
 		arrAr.at(i)->Mover(g);
 	}
 	// Pirana 
-	for (int i = 0; i < arrPir.size(); i++) {
-		if (arrPir.at(i)->getX() + arrPir.at(i)->getdX() < 0)
-			arrPir.at(i)->setFil(1);
-		if (arrPir.at(i)->getX() + arrPir.at(i)->getdX() > 1530 - arrPir.at(i)->getW())
-			arrPir.at(i)->setFil(0);
-		arrPir.at(i)->Dibujar_Imagen(g, bmpPir);
-		arrPir.at(i)->Mover(g);
-	}
+	if (objP->getX() + objP->getdX() < 0)
+		objP->setFil(1);
+	if (objP->getX() + objP->getdX() > 1530 - objP->getW())
+		objP->setFil(0);
+	objP->Dibujar_Imagen(g, bmpPir);
+	objP->Mover(g);
 		
 }
 void Selva::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
@@ -154,7 +133,7 @@ void Selva::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 	}
 }
 void Selva::Insertar_Enemigos() {
-	if (difftime(time(0), time_enemigos) > 5) {
+	if (difftime(time(0), time_enemigos) > 3) {
 		arrAna.push_back(new Anaconda(rand() % 1400, rand() % 200 + 20, 200, 200));
 		arrAr.push_back(new Arana(rand() % 1400, rand() % 200 + 20, 200, 200));
 		time_enemigos = time(0);

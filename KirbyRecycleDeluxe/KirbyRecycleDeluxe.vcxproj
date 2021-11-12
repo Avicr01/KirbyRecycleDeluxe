@@ -133,6 +133,7 @@
     <ClInclude Include="Pulpo.h" />
     <ClInclude Include="Selva.h" />
     <ClInclude Include="Sierra.h" />
+    <ClInclude Include="Tentaculos.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Anaconda.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Pulpo.cpp" />
     <ClCompile Include="Selva.cpp" />
     <ClCompile Include="Sierra.cpp" />
+    <ClCompile Include="Tentaculos.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

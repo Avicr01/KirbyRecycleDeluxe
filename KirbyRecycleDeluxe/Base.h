@@ -12,6 +12,7 @@ protected:
 	dir hor_direc;
 	int fracMovY, fracMovX;
 	int color;
+	bool nada;
 public:
 	Base();
 	Base(int _x, int _y, int _w, int _h);
@@ -53,4 +54,5 @@ public:
 	void Nadar(dir n);
 	// Desplazar - Kirby vuela
 	void Volar(dir n);
+	void setNada();
 };

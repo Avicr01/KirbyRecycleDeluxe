@@ -10,10 +10,10 @@ class Selva :
     public Nivel 
 {
 private:
-    vector<Base*> arrPir;
     vector<Base*> arrAna;
     vector<Base*> arrAr;
     vector<Base*> arrFr;
+    Pirana* objP;
 public:
     Selva();
     ~Selva();

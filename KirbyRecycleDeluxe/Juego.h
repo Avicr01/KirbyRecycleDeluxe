@@ -20,11 +20,11 @@ private:
 public:
 	Juego();
 	~Juego();
-	void Jugar_Selva(Graphics^ g, Bitmap^ bmpFruta, Bitmap^ bmpAnaconda, 
-		Bitmap^ bmpArana, Bitmap^ bmpPirana, Bitmap^ bmpKirbyVuela, Bitmap^ bmpBasura);
 	void Jugar_Costa();
 	void Jugar_Sierra(Graphics^ g, Bitmap^ bmpCushuro, Bitmap^ bmpGranizo, 
 		Bitmap^ bmpCondor, Bitmap^ bmpKirbyVuela,  Bitmap^ bmpKirbyCong, Bitmap^ bmpBasura);
+	void Jugar_Selva(Graphics^ g, Bitmap^ bmpFruta, Bitmap^ bmpAnaconda, 
+		Bitmap^ bmpArana, Bitmap^ bmpPirana, Bitmap^ bmpKirbyVuela, Bitmap^ bmpBasura);
 	int getNivel();
 	void Desplazar(dir mover);
 	int getVidas();

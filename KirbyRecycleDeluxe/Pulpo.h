@@ -3,4 +3,8 @@
 class Pulpo :
     public Base
 {
+public:
+    Pulpo();
+    Pulpo(int _x, int _y);
+    ~Pulpo();
 };

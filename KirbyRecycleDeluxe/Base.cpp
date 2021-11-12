@@ -5,6 +5,7 @@ Base::Base() {
 	direc = dir::none;
 	hor_direc = dir::right;
 	eliminar = false;
+	nada = false;
 }
 Base::Base(int _x, int _y, int _w, int _h) {
 	// Imagen estatica
@@ -15,6 +16,7 @@ Base::Base(int _x, int _y, int _w, int _h) {
 	dx = dy = 0;
 	direc = dir::none;
 	eliminar = false;
+	nada = false;
 }
 Base::Base(int _x, int _y, int _w, int _h, int _max_fil, int _max_col, int _fil, int _col) {
 	// Imagen animada
@@ -29,6 +31,7 @@ Base::Base(int _x, int _y, int _w, int _h, int _max_fil, int _max_col, int _fil,
 	dx = dy = 0;
 	direc = dir::none;
 	eliminar = false;
+	nada = false;
 }
 Base::~Base() {}
 int Base::getX() { return x; }
@@ -176,4 +179,7 @@ void Base::Dibujar_Imagen(Graphics^ g, Bitmap^ bmp) {
 }
 int Base::getColor() { 
 	return color;
+}
+void Base::setNada() {
+	nada = true;
 }
