@@ -1,13 +1,14 @@
 #include "Sierra.h"
 Sierra::Sierra() {
 	objC = new Condor(1000, 300, 1, 1);
+	objK = new Kirby(20, 20, 50, 50, false);
 }
 Sierra::~Sierra() {
 	for (int i = 0; i < arrGr.size(); i++)
 		delete arrGr.at(i);
 	for (int i = 0; i < arrCsh.size(); i++)
 		delete arrCsh.at(i);
-	delete objC;
+	delete objC, objK;
 }
 bool Sierra::Colision_Enemigos() {
 	bool resultado = false;

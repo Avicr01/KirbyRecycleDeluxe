@@ -72,41 +72,20 @@ void Base::Nadar(dir n) {
 	// Cambiar fila si es que es para otra cosa
 
 	// Cuando Kirby nada
-	/*
 	if (direc == dir::up) {
 		dy = -(h / fracMovY);
-		fil = 3;
-	}
-	if (direc == dir::down) {
-		dy = (h / fracMovY);
-		fil = 1;
-	}
-	if (direc == dir::left) {
-		dx = -(w / fracMovX);
-		fil = 0;
-	}
-	if (direc == dir::right) {
-		dx = (w / fracMovX);
 		fil = 2;
-	}
-	*/
-
-	if (direc == dir::up) {
-		dy = -(h / fracMovY);
-		fil = 3;
 	}
 	if (direc == dir::down) {
 		dy = (2 * h / fracMovY);
-		fil = 1;
+		fil = 3;
 	}
 	if (direc == dir::left) {
 		dx = -(w / fracMovX);
-		dy = (h / fracMovY);
 		fil = 1;
 	}
 	if (direc == dir::right) {
 		dx = (w / fracMovX);
-		dy = (h / fracMovY);
 		fil = 0;
 	}
 }
@@ -183,3 +162,14 @@ int Base::getColor() {
 void Base::setNada() {
 	nada = true;
 }
+bool Base::getNada() {
+	return nada;
+}
+void Base::Desplazar(dir orientacion) {
+	if (orientacion == dir::left) { fil = 0; }
+	if (orientacion == dir::right) { fil = 1; }
+}
+bool Base::getPow() {
+	return (difftime(time(0), des_pow) > 15);
+}
+

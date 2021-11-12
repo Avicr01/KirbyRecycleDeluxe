@@ -1,21 +1,24 @@
 #include "Kirby.h"
 
 Kirby::Kirby() { }
-Kirby::Kirby(int _x, int _y, int _w, int _h)
+Kirby::Kirby(int _x, int _y, int _w, int _h, bool _nada)
 	:Base(_x, _y, _w, _h, 4, 2, 0, 0) {
+	nada = _nada;
 	if (!nada) {
 		dir hor_dir = dir::right;
+		dy = y / fracMovY;
+		dx = 0;
 	}
 	else {
 		max_fil = 4;
 		max_col = 8;
+		dy = 0;
+		dx = 0;
 	}
 	direc = dir::down;
 	vidas = 3;
 	fracMovX = 4;
 	fracMovY = 4;
-	dy = y / fracMovY;
-	dx = 0;
 }
 Kirby::~Kirby() { }
 int Kirby::getVidas() { return vidas; }

@@ -1,9 +1,10 @@
 #include "Selva.h"
 Selva::Selva() : Nivel() {
 	objP = new Pirana(rand() % 1400, rand() % 10 + 740, 200, 200);
+	objK = new Kirby(20, 20, 50, 50, false);
 }
 Selva::~Selva() {
-	delete objP;
+	delete objP, objK;
 }
 bool Selva::Colision_Enemigos() {
 	bool resultado = false;
@@ -121,7 +122,6 @@ void Selva::Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpAna, Bitmap^ bmpAr, Bitmap^
 		objP->setFil(0);
 	objP->Dibujar_Imagen(g, bmpPir);
 	objP->Mover(g);
-		
 }
 void Selva::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) {
 	// Fruta

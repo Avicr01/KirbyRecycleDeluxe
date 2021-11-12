@@ -34,12 +34,13 @@ namespace KirbyRecycleDeluxe {
 			bmpKirbyHielo = gcnew Bitmap("sprites\\kirby_ice.png");
 			bmpKirbyNada = gcnew Bitmap("sprites\\kirby_swim.png");
 			bmpKirbyVuela = gcnew Bitmap("sprites\\kirby_fly.png");
-			bmpPez = gcnew Bitmap("sprites\\fish.png");
+			bmpPez = gcnew Bitmap("sprites\\pez.png");
 			bmpPirana = gcnew Bitmap("sprites\\piranha.png");
-			bmpPulpo = gcnew Bitmap("sprites\\pulpo.png");
+			bmpPulpo = gcnew Bitmap("sprites\\calamar_cabeza.png");
+			bmpTenta = gcnew Bitmap("sprites\\calamar_brazo.png");
 			// Fondos 
 			bmpCosta = gcnew Bitmap("sprites\\underwater.png");
-			bmpSierra =  gcnew Bitmap("sprites\\sierra.png");
+			bmpSierra = gcnew Bitmap("sprites\\sierra.png");
 			bmpSelva = gcnew Bitmap("sprites\\selva.png");
 
 			objJuego = new Juego();
@@ -58,7 +59,7 @@ namespace KirbyRecycleDeluxe {
 			// Eliminar variables
 			delete objJuego, bmpAnaconda, bmpArana, bmpBasura, bmpCondor, bmpCushuro, bmpFruta, bmpGranizo,
 				bmpKirbyHielo, bmpKirbyNada, bmpKirbyVuela, bmpPez, bmpPirana, bmpPulpo,
-				bmpCosta, bmpSelva, bmpSierra;
+				bmpCosta, bmpSelva, bmpSierra, bmpTenta;
 		}
 	private: System::Windows::Forms::Timer^ timer1;
 	protected:
@@ -84,6 +85,8 @@ namespace KirbyRecycleDeluxe {
 		Bitmap^ bmpPez;
 		Bitmap^ bmpPirana;
 		Bitmap^ bmpPulpo;
+		Bitmap^ bmpTenta;
+
 		// Fondos
 		Bitmap^ bmpCosta;
 		Bitmap^ bmpSelva;
@@ -200,7 +203,8 @@ namespace KirbyRecycleDeluxe {
 		// el Forms evalua en que nivel esta el juego
 		if (!objJuego->getFin()) {
 			if (nivel == 1)
-				objJuego->Jugar_Costa();
+				objJuego->Jugar_Costa(bf->Graphics, bmpPez, bmpPulpo,
+					bmpTenta, bmpKirbyNada, bmpBasura);
 			if (nivel == 2)
 				objJuego->Jugar_Sierra(bf->Graphics, bmpCushuro, bmpGranizo, 
 					bmpCondor, bmpKirbyVuela, bmpKirbyHielo, bmpBasura);

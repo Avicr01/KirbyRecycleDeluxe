@@ -5,6 +5,8 @@ public enum dir { up, down, left, right, none };
 class Base
 {
 protected:
+	//variable que define el tiempo en que desaparece el power up
+	time_t des_pow;
 	int x, y, w, h, dx, dy;
 	bool eliminar;
 	int max_fil, max_col, fil, col; // Sprites
@@ -55,4 +57,7 @@ public:
 	// Desplazar - Kirby vuela
 	void Volar(dir n);
 	void setNada();
+	bool getNada();
+	void Desplazar(dir orientacion);
+	bool getPow();
 };

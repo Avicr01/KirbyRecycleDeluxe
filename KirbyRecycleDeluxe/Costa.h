@@ -15,14 +15,14 @@ private:
     vector<Base*> arrP;
 public:
     Costa();
-    Costa(Graphics^ g, Bitmap^ bmp);
     ~Costa();
 	void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpTenta, Bitmap^ bmpCabeza);
 	void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
 	bool Colision_Pulpo();
 	bool Colision_PowerUp();
+    void Dibujar_Kirby(Graphics^ g, Bitmap^ bmp);
     // NOse porque esta mal 
 	void Insertar_Enemigos(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpTenta);
-    void Insertar_PowerUp();
+    void Insertar_PowerUp(Graphics^ g, Bitmap^ bmpPez);
 };
 

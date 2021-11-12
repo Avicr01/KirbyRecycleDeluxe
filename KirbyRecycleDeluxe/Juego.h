@@ -20,7 +20,8 @@ private:
 public:
 	Juego();
 	~Juego();
-	void Jugar_Costa();
+	void Jugar_Costa(Graphics^ g, Bitmap^ bmpPez, Bitmap^ bmpPulpo,
+		Bitmap^ bmpTenta, Bitmap^ bmpKirbyNada, Bitmap^ bmpBasura);
 	void Jugar_Sierra(Graphics^ g, Bitmap^ bmpCushuro, Bitmap^ bmpGranizo, 
 		Bitmap^ bmpCondor, Bitmap^ bmpKirbyVuela,  Bitmap^ bmpKirbyCong, Bitmap^ bmpBasura);
 	void Jugar_Selva(Graphics^ g, Bitmap^ bmpFruta, Bitmap^ bmpAnaconda, 

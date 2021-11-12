@@ -8,7 +8,7 @@ private:
 	dir hor_dir;
 public:
     Kirby();
-    Kirby(int _x, int _y, int _w, int _h);
+    Kirby(int _x, int _y, int _w, int _h, bool nada);
     void Mover(Graphics^ g);
     ~Kirby();
     int getVidas();

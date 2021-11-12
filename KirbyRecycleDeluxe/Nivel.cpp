@@ -5,7 +5,6 @@ Nivel::Nivel() {
 	rapidez = false;
 	pausa = false;
 	contador = 0;
-	objK = new Kirby(20, 20, 50, 50);
 	// La cantidad de Basura puede cambiar despues 
 	for (int i = 0; i < 10; i++)
 		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
@@ -16,13 +15,14 @@ Nivel::Nivel() {
 	time_powerup = time(0);
 }
 Nivel::~Nivel() {
-	delete objK;
 	for (int i = 0; i < arrB.size(); i++)
 		delete arrB.at(i);
 }
 void Nivel::Desplazar(dir mover) {
-	// Esta con volar
-	objK->Volar(mover);
+	if (objK->getNada())
+		objK->Nadar(mover);
+	else
+		objK->Volar(mover);
 }
 bool Nivel::getFin() {
 	return esFin;

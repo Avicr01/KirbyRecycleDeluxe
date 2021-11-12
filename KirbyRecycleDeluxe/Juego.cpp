@@ -1,7 +1,7 @@
 #include "Juego.h"
 Juego::Juego() {
 	// Test de nivel selva
-	nivel = 2;
+	nivel = 1;
 	time_init_app = time(0);
 	contador = 0;
 	nvCosta = new Costa();
@@ -11,8 +11,15 @@ Juego::Juego() {
 Juego::~Juego() {
 	delete nvCosta, nvSierra, nvSelva;
 }
-void Juego::Jugar_Costa() {
-
+void Juego::Jugar_Costa(Graphics^ g, Bitmap^ bmpPez, Bitmap^ bmpPulpo,
+	Bitmap^ bmpTenta, Bitmap^ bmpKirbyNada, Bitmap^ bmpBasura) {
+	nvCosta->Dibujar_Kirby(g, bmpKirbyNada);
+	nvCosta->Dibujar_Basura(g, bmpBasura);
+	nvCosta->Dibujar_PowerUp(g, bmpPez);
+	nvCosta->Dibujar_Enemigos(g, bmpTenta, bmpPulpo);
+	nvCosta->Insertar_Basura();
+	nvCosta->Insertar_PowerUp(g, bmpPez);
+	nvCosta->Insertar_Enemigos(g, bmpPulpo, bmpTenta);
 }
 void Juego::Jugar_Sierra(Graphics^ g, Bitmap^ bmpCushuro, Bitmap^ bmpGranizo,
 	Bitmap^ bmpCondor, Bitmap^ bmpKirbyVuela, Bitmap^ bmpKirbyCong, Bitmap^ bmpBasura) {
