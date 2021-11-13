@@ -1,6 +1,6 @@
 #pragma once
 #include "Base.h"
-//oliwiiiiiiiiiiiii
+//oliwiiiiiiiiiiiiii
 class Granizo :
     public Base
 {
