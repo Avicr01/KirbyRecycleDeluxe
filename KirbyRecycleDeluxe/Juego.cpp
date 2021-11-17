@@ -32,14 +32,18 @@ void Juego::Jugar_Sierra(Graphics^ g, Bitmap^ bmpCushuro, Bitmap^ bmpGranizo,
 	nvSierra->Insertar_Enemigos();
 }
 void Juego::Jugar_Selva(Graphics^ g,
-	Bitmap^ bmpFruta, Bitmap^ bmpAnaconda, Bitmap^ bmpArana, 
-	Bitmap^ bmpPirana, Bitmap^ bmpKirbyVuela, Bitmap^ bmpBasura) {
-	nvSelva->Dibujar_Kirby(g, bmpKirbyVuela);
+	Bitmap^ bmpFruta, Bitmap^ bmpAnaconda, Bitmap^ bmpArana,
+	Bitmap^ bmpPirana, Bitmap^ bmpKirbyVuela, Bitmap^ bmpKirbyFuego, Bitmap^ bmpBasura, Bitmap^ bala) {
+	nvSelva->Dibujar_Kirby(g, bmpKirbyVuela, bmpKirbyFuego, bala);
 	nvSelva->Dibujar_Basura(g, bmpBasura);
 	nvSelva->Dibujar_PowerUp(g, bmpFruta);
 	nvSelva->Dibujar_Enemigos(g, bmpAnaconda, bmpArana, bmpPirana);
 	nvSelva->Insertar_Basura();
-	nvSelva->Insertar_Enemigos();
+	nvSelva->Insertar_PowerUp(g, bmpFruta);
+	nvSelva->Insertar_Enemigos(g, bmpAnaconda);
+}
+void Juego::Disparar(Bitmap^ fire) {
+	nvSelva->Disparar(fire);
 }
 int Juego::getNivel() {
 	return nivel;
@@ -59,7 +63,7 @@ int Juego::getVidas() {
 	if (nivel == 2)
 		n = nvSierra->getVidas();
 	if (nivel == 3)
-		n = nvSelva->getVidas(); 
+		n = nvSelva->getVidas();
 	return n;
 }
 int Juego::getTiempo() {
@@ -105,4 +109,7 @@ void Juego::Resumen(Graphics^ g) {
 }
 void Juego::setNivel() {
 	++nivel;
+}
+void Juego::GrabarResultado(vector<string>datos) {
+	objK->GrabarOUTPUT(datos);
 }

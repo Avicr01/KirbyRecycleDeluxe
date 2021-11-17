@@ -12,6 +12,8 @@ private:
     Condor* objC;
     vector<Base*> arrGr;
     vector<Base*> arrCsh;
+    string nombre_archivo_granizo;
+    string nombre_archivo_cushuro;
 public:
     Sierra();
     ~Sierra();
@@ -23,5 +25,7 @@ public:
     void Dibujar_Congelado(Graphics^ g, Bitmap^ bmp);
     void Dibujar_Enemigos(Graphics^ g, Bitmap^ bmpGr, Bitmap^ bmpC);
     void Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp);
+    System::String^ retornar_nombre_archivo_granizo();
+    System::String^ retornar_nombre_archivo_cushuro();
 };
 

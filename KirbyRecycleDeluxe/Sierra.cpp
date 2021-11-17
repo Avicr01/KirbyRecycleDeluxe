@@ -2,6 +2,9 @@
 Sierra::Sierra() {
 	objC = new Condor(1000, 300, 1, 1);
 	objK = new Kirby(20, 20, 50, 50, false);
+	vector<string> parametros = objK->LeerINPUT();
+	nombre_archivo_cushuro = parametros.at(9);
+	nombre_archivo_granizo = parametros.at(15);
 }
 Sierra::~Sierra() {
 	for (int i = 0; i < arrGr.size(); i++)
@@ -95,7 +98,7 @@ void Sierra::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpCong) {
 
 	if (objK->getVidas() == 0)
 		esFin = true;
-	if (contador == 30) {
+	if (contador == 10) {
 		esFin = true;
 		esGanador = true;
 		Resumen(g);
@@ -129,3 +132,5 @@ void Sierra::Dibujar_Congelado(Graphics^ g, Bitmap^ congelado) {
 	if (difftime(time(0), time_pausa) > 5)
 		pausa = false;
 }
+System::String^ Sierra::retornar_nombre_archivo_cushuro() { return gcnew System::String(nombre_archivo_cushuro.c_str()); }
+System::String^ Sierra::retornar_nombre_archivo_granizo() { return gcnew System::String(nombre_archivo_granizo.c_str()); }

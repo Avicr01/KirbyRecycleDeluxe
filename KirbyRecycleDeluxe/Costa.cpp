@@ -2,9 +2,12 @@
 Costa::Costa() {
 	objK = new Kirby(20, 20, 50, 50, true);
 	// objP = new Pulpo(g->VisibleClipBounds.Width / 2 - bmp->Width / 2, 710);
-	objP = new Pulpo(1250/2, 610);
+	objP = new Pulpo(1250 / 2, 610);
+	vector<string> parametros = objK->LeerINPUT();
+	nombre_archivo_pulpo = parametros.at(3);
+	nombre_archivo_tenta = parametros.at(0);
 }
-Costa::~Costa() { 
+Costa::~Costa() {
 	delete objP, objK;
 	for (int i = 0; i < arrTenta.size(); i++)
 		delete arrTenta.at(i);
@@ -40,7 +43,7 @@ void Costa::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {
 
 	if (objK->getVidas() == 0)
 		esFin = true;
-	if (contador == 30) {
+	if (contador == 10) {
 		esFin = true;
 		esGanador = true;
 		Resumen(g);
@@ -134,4 +137,5 @@ void Costa::Insertar_Enemigos(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpTenta) {
 		}
 	}
 }
-
+System::String^ Costa::retornar_nombre_archivo_pulpo() { return gcnew System::String(nombre_archivo_pulpo.c_str()); }
+System::String^ Costa::retornar_nombre_archivo_tenta() { return gcnew System::String(nombre_archivo_tenta.c_str()); }

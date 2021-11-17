@@ -6,6 +6,7 @@ Base::Base() {
 	hor_direc = dir::right;
 	eliminar = false;
 	nada = false;
+	fuego = false;
 }
 Base::Base(int _x, int _y, int _w, int _h) {
 	// Imagen estatica
@@ -17,6 +18,7 @@ Base::Base(int _x, int _y, int _w, int _h) {
 	direc = dir::none;
 	eliminar = false;
 	nada = false;
+	fuego = false;
 }
 Base::Base(int _x, int _y, int _w, int _h, int _max_fil, int _max_col, int _fil, int _col) {
 	// Imagen animada
@@ -32,6 +34,7 @@ Base::Base(int _x, int _y, int _w, int _h, int _max_fil, int _max_col, int _fil,
 	direc = dir::none;
 	eliminar = false;
 	nada = false;
+	fuego = false;
 }
 Base::~Base() {}
 int Base::getX() { return x; }
@@ -70,7 +73,7 @@ void Base::Nadar(dir n) {
 	dx = dy = 0;
 	// Tener cuidado a que fila pertenece que
 	// Cambiar fila si es que es para otra cosa
-
+	//
 	// Cuando Kirby nada
 	if (direc == dir::up) {
 		dy = -(h / fracMovY);
@@ -99,7 +102,46 @@ void Base::Volar(dir n) {
 	// Tener cuidado a que fila pertenece que
 	// Cambiar fila si es que es para otra cosa
 	if (direc == dir::up) {
-		if(hor_direc == dir::left)
+		if (hor_direc == dir::left)
+			fil = 3;
+		else
+			fil = 2;
+		dy = -(h / fracMovY);
+	}
+	if (direc == dir::down) {
+		if (hor_direc == dir::left)
+			fil = 1;
+		else
+			fil = 0;
+		dy = (2 * h / fracMovY);
+	}
+	if (direc == dir::left) {
+		dx = -(w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 1;
+	}
+	if (direc == dir::right) {
+		dx = (w / fracMovX);
+		dy = (h / fracMovY);
+		fil = 0;
+	}
+}
+void Base::Fuego(dir n) {
+	direc = n;
+	dx = dy = 0;
+	// Tener cuidado a que fila pertenece que
+	// Cambiar fila si es que es para otra cosa
+	//
+	// Cuando 	if (direc == dir::left)
+	hor_direc = direc;
+	if (direc == dir::right)
+		hor_direc = direc;
+	direc = n;
+	dx = dy = 0;
+	// Tener cuidado a que fila pertenece que
+	// Cambiar fila si es que es para otra cosa
+	if (direc == dir::up) {
+		if (hor_direc == dir::left)
 			fil = 3;
 		else
 			fil = 2;
@@ -156,7 +198,7 @@ void Base::Dibujar_Imagen(Graphics^ g, Bitmap^ bmp) {
 	if (col == max_col)
 		col = 0;
 }
-int Base::getColor() { 
+int Base::getColor() {
 	return color;
 }
 void Base::setNada() {
@@ -165,6 +207,12 @@ void Base::setNada() {
 bool Base::getNada() {
 	return nada;
 }
+void Base::setFuego(bool _fuego) {
+	fuego = _fuego;
+}
+bool Base::getFuego() {
+	return fuego;
+}
 void Base::Desplazar(dir orientacion) {
 	if (orientacion == dir::left) { fil = 0; }
 	if (orientacion == dir::right) { fil = 1; }
@@ -172,4 +220,25 @@ void Base::Desplazar(dir orientacion) {
 bool Base::getPow() {
 	return (difftime(time(0), des_pow) > 15);
 }
-
+vector<string> Base::LeerINPUT() {
+	string linea;
+	vector<string> resultado;
+	ifstream miarchivo("INPUT.txt");
+	if (!miarchivo.fail()) {
+		while (!miarchivo.eof()) {
+			getline(miarchivo, linea);
+			resultado.push_back(linea);
+		}
+	}
+	return resultado;
+}
+void Base::GrabarOUTPUT(vector<string> datos) {
+	ofstream miarchivo("OUTPUT.txt", std::ofstream::app);
+	if (!miarchivo.fail()) {
+		for (int i = 0; i > datos.size(); i++) {
+			miarchivo << datos.at(i);
+		}
+		miarchivo.flush();
+		miarchivo.close();
+	}
+}

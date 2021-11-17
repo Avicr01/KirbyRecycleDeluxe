@@ -22,6 +22,9 @@ protected:
 	time_t time_enemigos;
 	// Tiempo para que aparezcan power ups
 	time_t time_powerup;
+	// Tiempo para el fuegito
+	time_t time_fuegito;
+
 	Kirby* objK;
 	vector<Base*> arrB;
 public:

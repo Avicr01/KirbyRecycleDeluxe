@@ -13,6 +13,7 @@ Nivel::Nivel() {
 	time_pausa = time(0);
 	time_enemigos = time(0);
 	time_powerup = time(0);
+	time_fuegito = time(0);
 }
 Nivel::~Nivel() {
 	for (int i = 0; i < arrB.size(); i++)
@@ -21,8 +22,15 @@ Nivel::~Nivel() {
 void Nivel::Desplazar(dir mover) {
 	if (objK->getNada())
 		objK->Nadar(mover);
-	else
-		objK->Volar(mover);
+	else {
+
+		if (objK->getFuego()) {
+			objK->Fuego(mover);
+		}
+		else {
+			objK->Volar(mover);
+		}
+	}
 }
 bool Nivel::getFin() {
 	return esFin;
