@@ -96,7 +96,7 @@ namespace KirbyRecycleDeluxe {
 			this->Text = L"MyForm1";
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
+			//a
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
