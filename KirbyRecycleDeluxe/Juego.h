@@ -43,6 +43,6 @@ public:
 	void GrabarResultado(vector<string>datos);
 	void setAncho(double n);
 	void setAlto(double n);
-
+	void DrawVidas(Graphics^ g, Bitmap^ heart);
 };
 

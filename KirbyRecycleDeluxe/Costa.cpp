@@ -1,7 +1,7 @@
 #include "Costa.h"
 Costa::Costa() {
 	objK = new Kirby(20, 20, 50, 50, true); 
-	objP = new Pulpo((rand()% 1000 + 1250) / 2, 610);
+	objP = new Pulpo((rand()% 1000 + 1250) / 2, 500);
 	// 
 	vector<string> parametros = objK->LeerINPUT();
 	nombre_archivo_pulpo = parametros.at(3);

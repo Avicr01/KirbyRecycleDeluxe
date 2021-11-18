@@ -54,7 +54,7 @@ Kirby::Kirby(int _x, int _y, int _w, int _h, bool _nada)
 		setFil(0);
 	}
 	direc = dir::down;
-	vidas = 10;
+	vidas = 3;
 	fracMovX = 4;
 	fracMovY = 4;
 }

@@ -114,6 +114,17 @@ void Juego::setNivel() {
 void Juego::GrabarResultado(vector<string>datos) {
 	objK->GrabarOUTPUT(datos);
 }
+void Juego::DrawVidas(Graphics^ g, Bitmap^ heart) {
 
+	Rectangle r = Rectangle(0, 0, heart->Width, heart->Height);
+	int a = 0;
+	int ancho = (g->VisibleClipBounds.Width);
+	for (int i = 0; i < getVidas(); i++)
+	{
+		g->DrawImage(heart, ancho - (heart->Width * 5) + a, 10, r, GraphicsUnit::Pixel);
+		
+		a += 45;
+	}
+}
 void Juego::setAncho(double n) { nvCosta->setAncho(n); }
 void Juego::setAlto(double n) { nvCosta->setAlto(n); }

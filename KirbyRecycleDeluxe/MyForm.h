@@ -41,6 +41,7 @@ namespace KirbyRecycleDeluxe {
 			bmpPulpo = gcnew Bitmap("sprites\\calamar_cabeza.png");
 			bmpTenta = gcnew Bitmap("sprites\\calamar_brazo.png");
 			bala = gcnew Bitmap("sprites\\fire.jpg");
+			heart = gcnew Bitmap("sprites\\heart.png");
 
 			// Fondos 
 			bmpCosta = gcnew Bitmap("sprites\\underwater.png");
@@ -63,7 +64,7 @@ namespace KirbyRecycleDeluxe {
 			// Eliminar variables
 			delete objJuego, bmpAnaconda, bmpArana, bmpBasura, bmpCondor, bmpCushuro, bmpFruta, bmpGranizo,
 				bmpKirbyHielo, bmpKirbyNada, bmpKirbyVuela, bmpPez, bmpPirana, bmpPulpo,
-				bmpCosta, bmpSelva, bmpSierra, bmpTenta, bmpKirbyFuego, bala;
+				bmpCosta, bmpSelva, bmpSierra, bmpTenta, bmpKirbyFuego, bala, heart;
 		}
 	private: System::Windows::Forms::Timer^ timer1;
 	protected:
@@ -92,6 +93,7 @@ namespace KirbyRecycleDeluxe {
 		Bitmap^ bmpPulpo;
 		Bitmap^ bmpTenta;
 		Bitmap^ bala;
+		Bitmap^ heart;
 
 		// Fondos
 		Bitmap^ bmpCosta;
@@ -100,7 +102,7 @@ namespace KirbyRecycleDeluxe {
 		String^ nombre_jugador;
 	private: System::Windows::Forms::Label^ lbPuntos;
 	private: System::Windows::Forms::Label^ lbTiempo;
-	private: System::Windows::Forms::Label^ lbVidas;
+
 
 
 
@@ -115,7 +117,6 @@ namespace KirbyRecycleDeluxe {
 			   this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->lbPuntos = (gcnew System::Windows::Forms::Label());
 			   this->lbTiempo = (gcnew System::Windows::Forms::Label());
-			   this->lbVidas = (gcnew System::Windows::Forms::Label());
 			   this->SuspendLayout();
 			   // 
 			   // timer1
@@ -126,7 +127,8 @@ namespace KirbyRecycleDeluxe {
 			   // lbPuntos
 			   // 
 			   this->lbPuntos->AutoSize = true;
-			   this->lbPuntos->Location = System::Drawing::Point(9, 7);
+			   this->lbPuntos->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			   this->lbPuntos->Location = System::Drawing::Point(1692, 72);
 			   this->lbPuntos->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			   this->lbPuntos->Name = L"lbPuntos";
 			   this->lbPuntos->Size = System::Drawing::Size(35, 13);
@@ -136,32 +138,22 @@ namespace KirbyRecycleDeluxe {
 			   // lbTiempo
 			   // 
 			   this->lbTiempo->AutoSize = true;
-			   this->lbTiempo->Location = System::Drawing::Point(9, 32);
+			   this->lbTiempo->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			   this->lbTiempo->Location = System::Drawing::Point(1784, 72);
 			   this->lbTiempo->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			   this->lbTiempo->Name = L"lbTiempo";
 			   this->lbTiempo->Size = System::Drawing::Size(35, 13);
 			   this->lbTiempo->TabIndex = 1;
 			   this->lbTiempo->Text = L"label2";
 			   // 
-			   // lbVidas
-			   // 
-			   this->lbVidas->AutoSize = true;
-			   this->lbVidas->Location = System::Drawing::Point(9, 57);
-			   this->lbVidas->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			   this->lbVidas->Name = L"lbVidas";
-			   this->lbVidas->Size = System::Drawing::Size(35, 13);
-			   this->lbVidas->TabIndex = 2;
-			   this->lbVidas->Text = L"label3";
-			   // 
 			   // MyForm
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(686, 513);
-			   this->Controls->Add(this->lbVidas);
+			   this->ClientSize = System::Drawing::Size(1826, 513);
 			   this->Controls->Add(this->lbTiempo);
 			   this->Controls->Add(this->lbPuntos);
-			   this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			   this->Margin = System::Windows::Forms::Padding(2);
 			   this->Name = L"MyForm";
 			   this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			   this->Text = L"MyForm";
@@ -196,10 +188,7 @@ namespace KirbyRecycleDeluxe {
 
 		System::String^ tiempo = "Tiempo: " + (objJuego->getTiempo()) + "s";
 		lbTiempo->Text = tiempo;
-
-		System::String^ vidas = "Vidas: " + (objJuego->getVidas());
-		lbVidas->Text = vidas;
-
+		
 		Graphics^ g = CreateGraphics();
 		BufferedGraphicsContext^ espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = espacio->Allocate(g, ClientRectangle);
@@ -220,6 +209,8 @@ namespace KirbyRecycleDeluxe {
 		if (nivel == 3)
 			bf->Graphics->DrawImage(bmpSelva, ClientRectangle,
 				Rectangle(0, 0, bmpSelva->Width, bmpSelva->Height), GraphicsUnit::Pixel);
+
+		objJuego->DrawVidas(bf->Graphics, heart);
 
 				// el Forms evalua en que nivel esta el juego
 		if (!objJuego->getFin()) {
