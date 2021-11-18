@@ -235,7 +235,7 @@ vector<string> Base::LeerINPUT() {
 void Base::GrabarOUTPUT(vector<string> datos) {
 	ofstream miarchivo("OUTPUT.txt", std::ofstream::app);
 	if (!miarchivo.fail()) {
-		for (int i = 0; i > datos.size(); i++) {
+		for (int i = 0; i < datos.size(); i++) {
 			miarchivo << datos.at(i);
 		}
 		miarchivo.flush();
