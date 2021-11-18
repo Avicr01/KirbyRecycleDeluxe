@@ -15,17 +15,11 @@ Nivel::Nivel() {
 	time_powerup = time(0);
 	time_fuegito = time(0);
 	time_basura = time(0);
-	ancho = 1000;
 }
 Nivel::~Nivel() {
 	for (int i = 0; i < arrB.size(); i++)
 		delete arrB.at(i);
 }
-void Nivel::setAlto(double alto) { this->alto = alto; }
-double Nivel::getAlto() { return alto; }
-
-void Nivel::setAncho(double ancho) { this->ancho = ancho; }
-double Nivel::getAncho() { return ancho; }
 
 void Nivel::Desplazar(dir mover) {
 	if (objK->getNada())

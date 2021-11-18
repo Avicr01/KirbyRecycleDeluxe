@@ -7,7 +7,6 @@ Juego::Juego() {
 	nvCosta = new Costa();
 	nvSierra = new Sierra();
 	nvSelva = new Selva();
-	obj = new Nivel();
 }
 Juego::~Juego() {
 	delete nvCosta, nvSierra, nvSelva;
@@ -126,5 +125,4 @@ void Juego::DrawVidas(Graphics^ g, Bitmap^ heart) {
 		a += 45;
 	}
 }
-void Juego::setAncho(double n) { nvCosta->setAncho(n); }
-void Juego::setAlto(double n) { nvCosta->setAlto(n); }
+

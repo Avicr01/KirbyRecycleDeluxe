@@ -12,7 +12,6 @@ protected:
 	int contador;
 	bool rapidez;
 	bool pausa;
-	int ancho, alto;
 	// Tiempo inicio de la aplicacion
 	time_t time_init_app;
 	// Tiempo de rapidez aumentada
@@ -49,8 +48,4 @@ public:
 	int getVidas();
 	int getContador();
 	void Resumen(Graphics^ g);
-	void setAncho(double ancho);
-	double getAncho();
-	void setAlto(double alto);
-	double getAlto();
 };

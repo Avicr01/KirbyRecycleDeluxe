@@ -193,9 +193,6 @@ namespace KirbyRecycleDeluxe {
 		BufferedGraphicsContext^ espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = espacio->Allocate(g, ClientRectangle);
 
-		objJuego->setAlto((bf->Graphics)->VisibleClipBounds.Height);
-		objJuego->setAncho((bf->Graphics)->VisibleClipBounds.Width);
-
 		// Variable que obtenga en que nivel esta ahora el juego
 		int nivel = objJuego->getNivel();
 
