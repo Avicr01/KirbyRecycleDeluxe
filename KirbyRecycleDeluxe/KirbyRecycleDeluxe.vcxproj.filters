@@ -72,6 +72,12 @@
     <ClInclude Include="Tentaculos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bala.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp">
@@ -131,5 +137,20 @@
     <ClCompile Include="Tentaculos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bala.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Nueva carpeta (3)\eeee\MyForm1.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Nueva carpeta (3)\eeee\INPUT.txt" />
+    <Text Include="..\..\Nueva carpeta (3)\eeee\OUTPUT.txt" />
   </ItemGroup>
 </Project>

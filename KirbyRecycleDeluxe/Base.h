@@ -1,5 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+using namespace std;
 using namespace System::Drawing;
 public enum dir { up, down, left, right, none };
 class Base
@@ -15,6 +19,7 @@ protected:
 	int fracMovY, fracMovX;
 	int color;
 	bool nada;
+	bool fuego;
 public:
 	Base();
 	Base(int _x, int _y, int _w, int _h);
@@ -50,14 +55,20 @@ public:
 	virtual void Mover(Graphics^ g);
 	void Dibujar(Graphics^ g, Bitmap^ bmp);
 	void Borrar(Graphics^ g);
-	void Dibujar_Imagen(Graphics^ g, Bitmap^ bmp);
+	virtual void Dibujar_Imagen(Graphics^ g, Bitmap^ bmp);
 	int getColor();
 	// Desplazar - Kirby nada
 	void Nadar(dir n);
 	// Desplazar - Kirby vuela
 	void Volar(dir n);
+	// Desplazar - Kirby fuego
+	void Fuego(dir n);
 	void setNada();
 	bool getNada();
+	void setFuego(bool fuego);
+	bool getFuego();
 	void Desplazar(dir orientacion);
 	bool getPow();
+	vector<string> LeerINPUT();
+	void GrabarOUTPUT(vector<string>);
 };

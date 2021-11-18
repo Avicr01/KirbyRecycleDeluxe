@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="Anaconda.h" />
     <ClInclude Include="Arana.h" />
+    <ClInclude Include="Bala.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Condor.h" />
@@ -125,6 +126,9 @@
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Kirby.h" />
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyForm11.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Nivel.h" />
@@ -138,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="Anaconda.cpp" />
     <ClCompile Include="Arana.cpp" />
+    <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="Basura.cpp" />
     <ClCompile Include="Condor.cpp" />
@@ -148,6 +153,7 @@
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="Kirby.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="MyForm11.cpp" />
     <ClCompile Include="Nivel.cpp" />
     <ClCompile Include="Pez.cpp" />
     <ClCompile Include="Pirana.cpp" />
@@ -164,9 +170,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\Nueva carpeta (3)\eeee\MyForm1.resx" />
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyForm11.resx">
+      <DependentUpon>MyForm11.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Nueva carpeta (3)\eeee\INPUT.txt" />
+    <Text Include="..\..\Nueva carpeta (3)\eeee\OUTPUT.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
