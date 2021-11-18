@@ -145,11 +145,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Nueva carpeta (3)\eeee\MyForm1.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="..\..\Nueva carpeta (3)\eeee\INPUT.txt" />
     <Text Include="..\..\Nueva carpeta (3)\eeee\OUTPUT.txt" />
   </ItemGroup>
