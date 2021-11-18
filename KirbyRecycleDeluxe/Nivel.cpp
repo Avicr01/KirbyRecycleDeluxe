@@ -7,18 +7,26 @@ Nivel::Nivel() {
 	contador = 0;
 	// La cantidad de Basura puede cambiar despues 
 	for (int i = 0; i < 10; i++)
-		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
+		arrB.push_back(new Basura(rand() % 1400, rand() % 100 + 720, 200, 200));
 	time_init_app = time(0);
 	time_rapidez = time(0);
 	time_pausa = time(0);
 	time_enemigos = time(0);
 	time_powerup = time(0);
 	time_fuegito = time(0);
+	time_basura = time(0);
+	ancho = 1000;
 }
 Nivel::~Nivel() {
 	for (int i = 0; i < arrB.size(); i++)
 		delete arrB.at(i);
 }
+void Nivel::setAlto(double alto) { this->alto = alto; }
+double Nivel::getAlto() { return alto; }
+
+void Nivel::setAncho(double ancho) { this->ancho = ancho; }
+double Nivel::getAncho() { return ancho; }
+
 void Nivel::Desplazar(dir mover) {
 	if (objK->getNada())
 		objK->Nadar(mover);
@@ -91,10 +99,14 @@ bool Nivel::Colision_PowerUp() {
 }
 void Nivel::Dibujar_Kirby(Graphics^ g, Bitmap^ bmp) {  }
 void Nivel::Dibujar_PowerUp(Graphics^ g, Bitmap^ bmp) { }
-void Nivel::Insertar_Basura() {
-	if (difftime(time(0), time_rapidez) > 5) {
-		arrB.push_back(new Basura(rand() % 1400, rand() % 10 + 720, 200, 200));
-		time_rapidez = time(0);
+
+void Nivel::Insertar_Basura(Graphics^ g, Bitmap^ bmp) {
+	if (difftime(time(0), time_basura) > 5) {
+		arrB.push_back(new Basura((gcnew System::Random())->Next(10, g->VisibleClipBounds.Width - bmp->Width -10),
+			(gcnew System::Random())->Next(g->VisibleClipBounds.Height-250, g->VisibleClipBounds.Height - bmp->Height/7 - 10)
+			, 1, 1));
+
+		time_basura = time(0);
 	}
 }
 void Nivel::Insertar_Enemigos() { }

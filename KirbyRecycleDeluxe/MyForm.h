@@ -204,6 +204,9 @@ namespace KirbyRecycleDeluxe {
 		BufferedGraphicsContext^ espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = espacio->Allocate(g, ClientRectangle);
 
+		objJuego->setAlto((bf->Graphics)->VisibleClipBounds.Height);
+		objJuego->setAncho((bf->Graphics)->VisibleClipBounds.Width);
+
 		// Variable que obtenga en que nivel esta ahora el juego
 		int nivel = objJuego->getNivel();
 
@@ -214,9 +217,9 @@ namespace KirbyRecycleDeluxe {
 		if (nivel == 2)
 			bf->Graphics->DrawImage(bmpSierra, ClientRectangle,
 				Rectangle(0, 0, bmpSierra->Width, bmpSierra->Height), GraphicsUnit::Pixel);
-		/*if (nivel == 3)
+		if (nivel == 3)
 			bf->Graphics->DrawImage(bmpSelva, ClientRectangle,
-				Rectangle(0, 0, bmpSelva->Width, bmpSelva->Height), GraphicsUnit::Pixel);*/
+				Rectangle(0, 0, bmpSelva->Width, bmpSelva->Height), GraphicsUnit::Pixel);
 
 				// el Forms evalua en que nivel esta el juego
 		if (!objJuego->getFin()) {

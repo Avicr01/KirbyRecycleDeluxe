@@ -7,6 +7,7 @@ Juego::Juego() {
 	nvCosta = new Costa();
 	nvSierra = new Sierra();
 	nvSelva = new Selva();
+	obj = new Nivel();
 }
 Juego::~Juego() {
 	delete nvCosta, nvSierra, nvSelva;
@@ -17,7 +18,7 @@ void Juego::Jugar_Costa(Graphics^ g, Bitmap^ bmpPez, Bitmap^ bmpPulpo,
 	nvCosta->Dibujar_Basura(g, bmpBasura);
 	nvCosta->Dibujar_PowerUp(g, bmpPez);
 	nvCosta->Dibujar_Enemigos(g, bmpTenta, bmpPulpo);
-	nvCosta->Insertar_Basura();
+	nvCosta->Insertar_Basura(g, bmpBasura);
 	nvCosta->Insertar_PowerUp(g, bmpPez);
 	nvCosta->Insertar_Enemigos(g, bmpPulpo, bmpTenta);
 }
@@ -27,7 +28,7 @@ void Juego::Jugar_Sierra(Graphics^ g, Bitmap^ bmpCushuro, Bitmap^ bmpGranizo,
 	nvSierra->Dibujar_Basura(g, bmpBasura);
 	nvSierra->Dibujar_PowerUp(g, bmpCushuro);
 	nvSierra->Dibujar_Enemigos(g, bmpGranizo, bmpCondor);
-	nvSierra->Insertar_Basura();
+	nvSierra->Insertar_Basura(g, bmpBasura);
 	nvSierra->Insertar_PowerUp(g, bmpCushuro);
 	nvSierra->Insertar_Enemigos();
 }
@@ -38,7 +39,7 @@ void Juego::Jugar_Selva(Graphics^ g,
 	nvSelva->Dibujar_Basura(g, bmpBasura);
 	nvSelva->Dibujar_PowerUp(g, bmpFruta);
 	nvSelva->Dibujar_Enemigos(g, bmpAnaconda, bmpArana, bmpPirana);
-	nvSelva->Insertar_Basura();
+	nvSelva->Insertar_Basura(g, bmpBasura);
 	nvSelva->Insertar_PowerUp(g, bmpFruta);
 	nvSelva->Insertar_Enemigos(g, bmpAnaconda);
 }
@@ -113,3 +114,6 @@ void Juego::setNivel() {
 void Juego::GrabarResultado(vector<string>datos) {
 	objK->GrabarOUTPUT(datos);
 }
+
+void Juego::setAncho(double n) { nvCosta->setAncho(n); }
+void Juego::setAlto(double n) { nvCosta->setAlto(n); }

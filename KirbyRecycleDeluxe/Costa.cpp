@@ -1,11 +1,12 @@
 #include "Costa.h"
 Costa::Costa() {
-	objK = new Kirby(20, 20, 50, 50, true);
-	// objP = new Pulpo(g->VisibleClipBounds.Width / 2 - bmp->Width / 2, 710);
-	objP = new Pulpo(1250 / 2, 610);
+	objK = new Kirby(20, 20, 50, 50, true); 
+	objP = new Pulpo((rand()% 1000 + 1250) / 2, 610);
+	// 
 	vector<string> parametros = objK->LeerINPUT();
 	nombre_archivo_pulpo = parametros.at(3);
 	nombre_archivo_tenta = parametros.at(0);
+
 }
 Costa::~Costa() {
 	delete objP, objK;
@@ -118,6 +119,7 @@ void Costa::Insertar_PowerUp(Graphics^ g, Bitmap^ bmpPez) {
 
 void Costa::Insertar_Enemigos(Graphics^ g, Bitmap^ bmp, Bitmap^ bmpTenta) {
 	// Tentaculos
+	//objP = new Pulpo(g->VisibleClipBounds.Width / 2 - bmp->Width / 2, 710);
 	if (difftime(time(0), time_enemigos) > 3) {
 		time_enemigos = time(0);
 		int aux = rand() % 2;
